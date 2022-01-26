@@ -1,0 +1,17 @@
+{
+    "name": "quentin/udemy",
+    "autoload": {
+        "psr-4": {
+            "Quentin\\Udemy\\": "src/"
+        }
+    },
+    "authors": [
+        {
+            "name": "Quentin Source",
+            "email": "carlier.quentin@gmail.com"
+        }
+    ],
+    "require": {
+        "symfony/var-dumper": "^5.4"
+    }
+}
