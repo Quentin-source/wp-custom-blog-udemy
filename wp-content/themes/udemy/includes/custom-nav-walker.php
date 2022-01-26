@@ -13,7 +13,6 @@ class JU_Custom_Nav_Walker extends Walker_Nav_Menu{
         $output .= $args->link_before . $item->title . $args->link_after;
         $output .= '</a>';
         $output .= $args->after;
-        dd($args);
     }
 
     public function end_el(&$output, $item, $depth = 0, $args = [], $id=0){
