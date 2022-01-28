@@ -30,7 +30,7 @@
         <li>
             <a href="#">
                 <i class="icon-comments"></i>
-                <?php comments_number("0");?>
+                <?php comments_number("0 Comment");?>
             </a>
         </li>
     </ul>
