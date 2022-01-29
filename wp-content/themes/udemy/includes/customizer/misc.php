@@ -5,12 +5,12 @@ function ju_misc_customizer_section($wp_customize)
     $wp_customize->add_section("ju_misc_section", [
         "title" => __("Udemy Misc Settings", "wp-custom-blog-udemy"),
         "priority" => 30,
-        "panel" => "udemy"
+        "panel" => "udemy",
     ]);
 
     $wp_customize->add_setting("ju_header_show_search", [
         "default" => "yes",
-        "transport" => "postMessage"
+        "transport" => "postMessage",
     ]);
 
     $wp_customize->add_setting("ju_header_show_cart", [
@@ -19,15 +19,15 @@ function ju_misc_customizer_section($wp_customize)
     ]);
 
     $wp_customize->add_setting("ju_footer_copyright_text", [
-        "default" => "Copyrights © 2017 All Rights Reserved by Udemy."
+        "default" => "Copyrights © 2017 All Rights Reserved by Udemy.",
     ]);
 
     $wp_customize->add_setting("ju_footer_tos_page", [
-        "default" => 0
+        "default" => 0,
     ]);
 
     $wp_customize->add_setting("ju_footer_privacy_page", [
-        "default" => 0
+        "default" => 0,
     ]);
 
     $wp_customize->add_control(new WP_Customize_Control(
@@ -39,7 +39,7 @@ function ju_misc_customizer_section($wp_customize)
             "settings" => "ju_header_show_search",
             "type" => "checkbox",
             "choices" => [
-                "yes" => "Yes"
+                "yes" => "Yes",
             ],
         ]
     ));
@@ -53,7 +53,7 @@ function ju_misc_customizer_section($wp_customize)
             "settings" => "ju_header_show_cart",
             "type" => "checkbox",
             "choices" => [
-                "yes" => "Yes"
+                "yes" => "Yes",
             ],
         ]
     ));
@@ -89,4 +89,37 @@ function ju_misc_customizer_section($wp_customize)
             "type" => "dropdown-pages",
         ]
     ));
+
+    $wp_customize->add_setting("ju_read_more_color", [
+        "default" => "#1ABC9C",
+
+    ]);
+
+    $wp_customize->add_setting("ju_report_file", [
+        "default" => "",
+
+    ]);
+
+    $wp_customize->add_control(
+        new WP_Customize_Color_Control(
+            $wp_customize,
+            "ju_read_more_color_input",
+            [
+                "label" => __("Read More Color", "wp-custom-blog-udemy"),
+                "section" => "ju_misc_section",
+                "settings" => "ju_read_more_color",
+            ]
+        ));
+
+    $wp_customize->add_control(
+        new WP_Customize_Upload_Control(
+            $wp_customize,
+            'ju_report_file_input',
+            array(
+                'label' => __('File Report', 'wp-custom-blog-udemy'),
+                'section' => 'ju_misc_section',
+                'settings' => 'ju_report_file',
+            ))
+    );
+
 }

@@ -9,7 +9,7 @@
            <div class="container clearfix">
 
                <div class="col_half">
-                   <?php get_theme_mod("ju_footer_copyright_text") ?>.<br>
+                   <?php get_theme_mod("ju_footer_copyright_text") ?><br>
                    <div class="copyright-links">
                        <?php if (get_theme_mod("ju_footer_tos_page")) { ?>
 
@@ -22,8 +22,11 @@
                            <a href="<?php the_permalink(get_theme_mod("ju_footer_privacy_page")) ?>">Privacy Policy</a>
                    </div>
                <?php
-                        }
-                ?>
+                        };
+
+                        if (get_theme_mod("ju_report_file")) { ?>
+                   <a href="<?php echo get_theme_mod("ju_report_file"); ?>">Download Report</a><br>
+               <?php }; ?>
                </div>
 
                <div class="col_half col_last tright">
