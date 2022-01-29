@@ -5,21 +5,27 @@ function ju_misc_customizer_section($wp_customize)
     $wp_customize->add_section("ju_misc_section", [
         "title" => __("Udemy Misc Settings", "wp-custom-blog-udemy"),
         "priority" => 30,
-
+        "panel" => "udemy"
     ]);
 
     $wp_customize->add_setting("ju_header_show_search", [
-        "default" => "yes"
+        "default" => "yes",
+        "transport" => "postMessage"
     ]);
+
     $wp_customize->add_setting("ju_header_show_cart", [
-        "default" => "yes"
+        "default" => "yes",
+        "transport" => "postMessage",
     ]);
+
     $wp_customize->add_setting("ju_footer_copyright_text", [
         "default" => "Copyrights © 2017 All Rights Reserved by Udemy."
     ]);
+
     $wp_customize->add_setting("ju_footer_tos_page", [
         "default" => 0
     ]);
+
     $wp_customize->add_setting("ju_footer_privacy_page", [
         "default" => 0
     ]);
