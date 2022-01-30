@@ -30,7 +30,7 @@
 
             <!-- Post Content
           ============================================= -->
-            <div class="postcontent nobottommargin clearfix">
+            <div id="post-<?php the_ID(); ?>" <?php post_class("postcontent nobottommargin clearfix");?>>
 
                 <?php if (have_posts()) while (have_posts()) :
                     the_post();
