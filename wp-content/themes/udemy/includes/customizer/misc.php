@@ -122,4 +122,38 @@ function ju_misc_customizer_section($wp_customize)
             ))
     );
 
+    $wp_customize->add_setting("ju_show_header_popular_post", [
+        "default" => false,
+    ]);
+
+    $wp_customize->add_setting("ju_popular_posts_widget_title", [
+        "default" => "Breaking News",
+    ]);
+
+    $wp_customize->add_control(new WP_Customize_Control(
+        $wp_customize,
+        "ju_show_header_popular_post_input",
+        [
+            "label" => __("Show Popular Posts", "wp_custom_blog_udemy"),
+            "section" => "ju_misc_section",
+            "settings" => "ju_show_header_popular_post",
+            "type" => "checkbox",
+            "choices" => [
+                "yes" => __("Yes", "wp-custom-blog-udemy"),
+            ],
+        ]
+    ));
+
+    $wp_customize->add_control(new WP_Customize_Control(
+        $wp_customize,
+        "ju_popular_posts_widget_title_input",
+        [
+            "label" => __("Popular Posts Widget Titles", "wp_custom_blog_udemy"),
+            "section" => "ju_misc_section",
+            "settings" => "ju_popular_posts_widget_title",
+        ]
+    ));
+
+
+
 }
