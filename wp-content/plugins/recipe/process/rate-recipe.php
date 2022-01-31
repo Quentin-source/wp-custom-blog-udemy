@@ -13,35 +13,53 @@ function r_rate_recipe()
     $rating_count = $wpdb->get_var(
         "SELECT COUNT(*) FROM `" . $wpdb->prefix . "recipe_ratings` WHERE recipe_id ='" . $post_ID . "' AND user_ip='" . $user_ip . "'"
     );
-
-    //if so send response 1 in json
+    //if so replace the row in dd
     if ($rating_count > 0) {
-        wp_send_json($output); //exit
+
+        $get_id = $wpdb->get_var(
+            "SELECT `ID` FROM `" . $wpdb->prefix . "recipe_ratings` WHERE recipe_id ='" . $post_ID . "' AND user_ip='" . $user_ip . "'"
+        );
+        // wp_send_json($output); //exit 
+
+        $wpdb->update(
+            $wpdb->prefix . 'recipe_ratings',
+            [
+                'recipe_id' => $post_ID,
+                'rating' => $rating,
+                'user_ip' => $user_ip
+            ],
+            ['ID' => $get_id],
+            [
+                '%d', '%f', '%s'
+            ],
+            ['%d']
+        );
+    } else {
+
+        //if not insert a nex rate into the db related to the ip adress
+        $wpdb->insert(
+            $wpdb->prefix . 'recipe_ratings',
+            [
+                'recipe_id' => $post_ID,
+                'rating' => $rating,
+                'user_ip' => $user_ip
+            ],
+            [
+                '%d', '%f', '%s'
+            ]
+        );
     };
-
-    //if not insert a nex rate into the db related to the ip adress
-    $wpdb->insert(
-        $wpdb->prefix . 'recipe_ratings',
-        [
-            'recipe_id' => $post_ID,
-            'rating' => $rating,
-            'user_ip' => $user_ip
-        ],
-        [
-            '%d', '%f', '%s'
-        ]
-    );
-
     // here we store the recipe related metadata due to the new noation
     //first get the metadata
     $recipe_data = get_post_meta($post_ID, 'recipe_data', true);
     // increment the number of notes
     $recipe_data['rating_count'] = $wpdb->get_var(
         "SELECT COUNT(*) FROM `" . $wpdb->prefix . "recipe_ratings`;"
-    ); ;
+    );;
     //get the average of all the affected notes 
     $recipe_data['rating'] = round($wpdb->get_var(
-        "SELECT AVG(`rating`) FROM `" . $wpdb->prefix . "recipe_ratings` WHERE recipe_id ='" . $post_ID . "';"),1);
+        "SELECT AVG(`rating`) FROM `" . $wpdb->prefix . "recipe_ratings` WHERE recipe_id ='" . $post_ID . "';"
+    ), 1);
 
     //finally write the metadata into the recipe post
     update_post_meta($post_ID, 'recipe_data', $recipe_data);

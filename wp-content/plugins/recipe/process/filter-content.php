@@ -17,11 +17,11 @@ function r_filter_recipe_content($content)
         "SELECT COUNT(*) FROM `" . $wpdb->prefix . "recipe_ratings` WHERE recipe_id ='" . $post->ID . "' AND user_ip='" . $user_ip . "'"
     );
 
-    if ($rating_count > 0) {
-        $recipe_html = str_replace('READONLY_PLACEHOLDER', 'data-rateit-readonly="true"', $recipe_html);
-    } else {
-        $recipe_html = str_replace('READONLY_PLACEHOLDER', '', $recipe_html);
-    }
+    // if ($rating_count > 0) {
+    //     $recipe_html = str_replace('READONLY_PLACEHOLDER', 'data-rateit-readonly="true"', $recipe_html);
+    // } else {
+    //     $recipe_html = str_replace('READONLY_PLACEHOLDER', '', $recipe_html);
+    // }
 
 
     return $recipe_html . $content;

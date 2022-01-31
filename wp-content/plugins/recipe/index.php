@@ -26,6 +26,7 @@ include("includes/front/enqueue.php");
 include("process/save-post.php");
 include("process/filter-content.php");
 include("process/rate-recipe.php");
+include("includes/admin/init.php");
 
 
 
@@ -50,6 +51,8 @@ add_action("wp_enqueue_scripts", "r_enqueue", 100);
 add_action('wp_ajax_r_rate_recipe', 'r_rate_recipe');
 add_action('wp_ajax_nopriv_r_rate_recipe', 'r_rate_recipe');
 
+//when the admin init
+add_action('admin_init', 'r_recipe_admin_init');
 
 
 
